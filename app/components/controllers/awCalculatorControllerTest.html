@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+		<!-- Angular and Angular Mock references -->
+    	<script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+    	<script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-messages.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+	</head>
+
+	<body></body>
+
+	<script src="awCalculatorController.js"></script>
+
+	<script type="text/javascript">
+
+	var calculator = {
+		sumA: function(x, y) {
+			return x + y;
+		}
+	}
+   
+
+    beforeEach(angular.mock.module('calculatorApp'));
+	var $controller;
+	beforeEach(angular.mock.inject(function(_$controller_){
+	  $controller = _$controller_;
+	}));
+
+
+	describe('calculator', function () {
+	
+		it('1 + 1 should equal 2', function () {
+			expect(calculator.sumA(1, 1)).toBe(2);
+		});
+
+		it('3 * 2 should equal 6', function () {
+			var $scope = {};
+			var controller = $controller('calculatorController', { $scope: $scope });
+ 
+			$scope.numberClick("3");
+			$scope.operationClick("*");
+			$scope.numberClick("2");
+			$scope.operationClick("=");
+			console.log("result " + $scope.calculator.result);
+			expect($scope.calculator.currentDisplay).toBe("3 * 2");
+			expect($scope.calculator.result).toBe(6);
+		});
+
+	});
+
+	</script>
+</html>

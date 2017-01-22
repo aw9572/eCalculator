@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>		
+		.section{clear:both;padding:0;margin:0}.col{background-color:#f4f4f4;height:20px;text-align:center;display:block;float:left;margin:1% 0 1% 1.6%}.col:first-child{margin-left:0}.col:hover{background-color:#f0f0ff}.group:before,.group:after{content:"";display:table}.group:after{clear:both}.c3of4{width:74.6%}.c1of4{width:23.8%}
+	     
+	     table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }		
+	</style>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script src="components/controllers/awCalculatorController.js"></script>
+	
+</head>
+
+<body ng-app="calculatorApp">
+	<!-- Declare the View -->
+  <div ng-controller="calculatorController">
+
+  <h2>Andrew's  Calculator</h2>
+  <br/>
+  <table>   
+	  	<tr><td ng-repeat="n in [1,2,3]"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
+	   	<tr><td ng-repeat="n in [4,5,6]"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
+	   	<tr><td ng-repeat="n in [7,8,9]"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
+	    <tr><td ng-repeat="n in [0,'.','X']"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
+  </table>
+  <br/>
+    <table>
+    	<tr><td ng-repeat="op in ['+','-','*','/','=']"><button ng-click='operationClick(op)'>{{op}}</button></td></tr>
+    </table>
+  <br/>
+    <table><th> Output </th>
+    	<tr><td><div >{{ calculator.currentDisplay }}</div></td></tr>
+    	<tr><td><div >{{ calculator.result }}</div></td></tr>
+    	<tr><td><div ng-click="resetClicked()" >CLEAR</div></td></tr>
+    </table>
+  <br/>
+
+		<div class="section group"> <!-- Display the result row -->
+			<div class="col c3of4">{{ calculator.currentDisplay }}</div>
+			<div ng-click="resetClicked()" class="col c1of4">C</div>
+		</div>
+		<div class="section group"> <!-- Display the 1st number row -->
+			<div ng-click="numberClick(1)" class="col c1of4">1</div>
+			<div ng-click="numberClick(2)" class="col c1of4">2</div>
+			<div ng-click="numberClick(3)" class="col c1of4">3</div>
+			<div ng-click="operationClick('+')" class="col c1of4">+</div>
+		</div>
+		<div class="section group"> <!-- Display the 2nd number row -->
+			<div ng-click="numberClick(4)" class="col c1of4">4</div>
+			<div ng-click="numberClick(5)" class="col c1of4">5</div>
+			<div ng-click="numberClick(6)" class="col c1of4">6</div>
+			<div ng-click="operationClick('-')" class="col c1of4">-</div>
+		</div>
+		<div class="section group"> <!-- Display the 3rd number row -->
+			<div ng-click="numberClick(7)" class="col c1of4">7</div>
+			<div ng-click="numberClick(8)" class="col c1of4">8</div>
+			<div ng-click="numberClick(9)" class="col c1of4">9</div>
+			<div ng-click="enterClicked()" class="col c1of4">Enter</div>
+		</div>
+	</div>
+
+    <script type="text/javascript">
+
+    </script>
+	
+	
+</body>

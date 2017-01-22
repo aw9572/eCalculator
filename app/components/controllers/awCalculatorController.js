@@ -7,8 +7,8 @@
         $scope.calculator = calculatorModel;
 
 			$scope.numberClick = function(clickedNumber) {
-				console.log("clickedNumber  " + clickedNumber);
-				if (calculatorModel.currentNumber === "0") {
+				//console.log("clickedNumber  " + clickedNumber);
+				if (calculatorModel.currentNumber === "0") {  // TODO Special 0 behaviour
 					calculatorModel.currentNumber = "";
 					calculatorModel.currentDisplay = "";
 				} 
@@ -25,8 +25,8 @@
 			};
 			
 			$scope.operationClick = function(clickedOperation) {
-				console.log(clickedOperation + "  " + calculatorModel.result);
-				if (clickedOperation === "=") {
+				//console.log(clickedOperation + "  " + calculatorModel.result);
+				if (clickedOperation === "=") {  // Special case
 					this.enterClicked();
 				}				
 				else {
@@ -36,7 +36,6 @@
 			
 			$scope.enterClicked = function() {
 				calculatorModel.calculate();
-				//calculatorModel.currentDisplay = calculatorModel.result;
 			};
 			
 			$scope.resetClicked = function() {
@@ -72,7 +71,7 @@
 		},
 
 		calculate: function() {
-			console.log("firstNumber: " + this.firstNumber + " currentNumber:  " + this.currentNumber);
+			//console.log("firstNumber: " + this.firstNumber + " currentNumber:  " + this.currentNumber);
 			switch(this.operation) {
 				case "+":
 					this.result = this.firstNumber + parseFloat(this.currentNumber);

@@ -15,7 +15,7 @@
 		  <br/>
 
 		  <!-- Input -->
-		  <table>   
+		  <table aid="numbers">   
 			  	<tr><td ng-repeat="n in [1,2,3]"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
 			   	<tr><td ng-repeat="n in [4,5,6]"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
 			   	<tr><td ng-repeat="n in [7,8,9]"><button ng-click='numberClick(n)'>{{n}}</button></td></tr>
@@ -23,15 +23,16 @@
 		  </table>
 		  <br/>
 
-		  <table>
+		  <table aid="operations">
 		    	<tr><td ng-repeat="op in ['+','-','*','/','=']"><button ng-click='operationClick(op)'>{{op}}</button></td></tr>
 		  </table>
 		  <br/>
 
 		  <!-- Output -->
-		  <table><th> Output </th>
-		    	<tr><td><div >{{ calculator.currentDisplay }}</div></td></tr>
-		    	<tr><td><div >{{ calculator.result }}</div></td></tr>
+		  <table aid="output">
+		  		<th> Output </th>
+		    	<tr><td><div aid="display">{{ calculator.currentDisplay }}</div></td></tr>
+		    	<tr><td><div aid="result">{{ calculator.result }}</div></td></tr>
 		    	<tr><td><div ng-click="resetClicked()" >CLEAR</div></td></tr>
 		  </table>
 		  <br/>

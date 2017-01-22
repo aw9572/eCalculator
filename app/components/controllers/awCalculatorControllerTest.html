@@ -8,8 +8,6 @@
     	<script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
     	<script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-messages.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
 	</head>
 
 	<body></body>
@@ -18,40 +16,44 @@
 
 	<script type="text/javascript">
 
-	var calculator = {
-		sumA: function(x, y) {
-			return x + y;
-		}
-	}
-   
-
-    beforeEach(angular.mock.module('calculatorApp'));
-	var $controller;
-	beforeEach(angular.mock.inject(function(_$controller_){
-	  $controller = _$controller_;
-	}));
+	    beforeEach(angular.mock.module('calculatorApp'));
+		var $controller;
+		beforeEach(angular.mock.inject(function(_$controller_){
+		  $controller = _$controller_;
+		}));
 
 
-	describe('calculator', function () {
-	
-		it('1 + 1 should equal 2', function () {
-			expect(calculator.sumA(1, 1)).toBe(2);
+		describe('calculator', function () {
+		
+			it('3*4 = 12 then Clear gives 0', function () {
+				var $scope = {};
+				var controller = $controller('calculatorController', { $scope: $scope });
+	 
+				$scope.numberClick("3");
+				$scope.operationClick("*");
+				$scope.numberClick("4");
+				$scope.operationClick("=");
+				console.log("result " + $scope.calculator.result);
+				expect($scope.calculator.currentDisplay).toBe("3 * 4");
+				expect($scope.calculator.result).toBe(12);
+				$scope.resetClicked();
+				expect($scope.calculator.result).toBe(0);		
+			});
+
+			it('7/2 = 3.5', function () {
+				var $scope = {};
+				var controller = $controller('calculatorController', { $scope: $scope });
+	 
+				$scope.numberClick("7");
+				$scope.operationClick("/");
+				$scope.numberClick("2");
+				$scope.operationClick("=");
+				expect($scope.calculator.currentDisplay).toBe("7 / 2");
+				expect($scope.calculator.result).toBe(3.5);
+			});
+
+			// TODO +, -, ., X, 0,  floats, edge cases (big, small, n/0, ...)
 		});
-
-		it('3 * 2 should equal 6', function () {
-			var $scope = {};
-			var controller = $controller('calculatorController', { $scope: $scope });
- 
-			$scope.numberClick("3");
-			$scope.operationClick("*");
-			$scope.numberClick("2");
-			$scope.operationClick("=");
-			console.log("result " + $scope.calculator.result);
-			expect($scope.calculator.currentDisplay).toBe("3 * 2");
-			expect($scope.calculator.result).toBe(6);
-		});
-
-	});
 
 	</script>
 </html>
